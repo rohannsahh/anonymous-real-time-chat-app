@@ -1,11 +1,15 @@
-
+import React from 'react';
+import { generatePseudoName } from './components/utils/generatePseudoName';
 
 export default function Home() {
+  const pseudoName = generatePseudoName();
+
+
   return (
     <div className="flex flex-col items-center justify-evenly min-h-screen bg-gray-900 text-white p-4">
       <h1 className="text-3xl text-center font-bold mb-8">One-on-One Real time Chat Application</h1>
       <div className="bg-gray-800 p-8 h-96 flex flex-col  rounded-md w-full max-w-3xl">
-       <div className="mt-2 mb-8"><h2 className="text-center text-xl mb-4">Welcome, {`{pseudo name}`}</h2></div> 
+       <div className="mt-2 mb-8"><h2 className="text-center text-xl mb-4">Welcome, <span className='bg-green-500 rounded-md p-1'>{pseudoName}</span></h2></div> 
         <div className="flex justify-around my-12">
           <div className=" text-center items-center">
             <button className="bg-white text-black font-semibold px-4 py-2 rounded-md mb-2 hover:bg-gray-200">Start Chat</button>
