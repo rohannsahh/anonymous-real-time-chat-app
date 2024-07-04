@@ -5,7 +5,7 @@ async function init() {
     const httpServer = http.createServer();
     const io = new Server(httpServer, {
         cors: {
-            origin: "*", // Allow all origins, adjust as necessary
+            origin: "*", 
             methods: ["GET", "POST"]
         }
     });
@@ -40,8 +40,10 @@ async function init() {
 
         // When a message is sent
         socket.on('message', ({ roomId, message }) => {
-            console.log(`Message received in room ${roomId}: ${message}`);
-            io.to(roomId).emit('message', message);
+            if (roomId && message) { // Ensure roomId and message are not undefined
+                console.log(`Message received in room ${roomId}: ${message}`);
+                io.to(roomId).emit('message', message);
+            }
         });
 
         // When a user disconnects

@@ -19,9 +19,11 @@ const ChatRoom: React.FC = () => {
 
     if (roomId) {
       socketInstance.emit('joinRoom', { roomId });
+
       socketInstance.on('message', (message: string) => {
         console.log(`Message received: ${message}`);
         setMessages((prevMessages) => [...prevMessages, message]);
+        console.log('Updated messages:', messages); // Log messages to verify state update
       });
 
       socketInstance.on('disconnected', () => {
@@ -39,7 +41,7 @@ const ChatRoom: React.FC = () => {
     if (socket && roomId) {
       console.log(`Sending message: ${sanitizedMessage}`);
       socket.emit('message', { roomId, message: sanitizedMessage });
-      setMessages([...messages, sanitizedMessage]);
+      setMessages((prevMessages) => [...prevMessages, sanitizedMessage]);
       setInputMessage('');
     }
   };

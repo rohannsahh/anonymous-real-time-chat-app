@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setPseudoName(generatePseudoName());
-      const socketInstance = io('http://localhost:8000'); // Adjust the URL to your server's URL
+      const socketInstance = io('http://localhost:8000');
       setSocket(socketInstance);
 
       socketInstance.on('connect', () => {
@@ -43,7 +43,6 @@ const Home: React.FC = () => {
   };
 
   if (!pseudoName) {
-    // Render a loading state while pseudoName is being generated
     return <div>Loading...</div>;
   }
 
